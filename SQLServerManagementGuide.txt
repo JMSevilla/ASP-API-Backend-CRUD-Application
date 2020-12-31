@@ -1,0 +1,46 @@
+SQL Views
+View Name : v_Functionality
+Query : 
+SELECT        dbo.tbfunctionality.*
+FROM            dbo.tbfunctionality
+
+SQL Stored Procedure
+SPROC Name : proc_function_create
+Query : 
+
+create procedure proc_function_create
+(
+@firstname varchar(100),
+@lastname varchar(100),
+@email varchar(100),
+@comment text,
+@state varchar(50) = ''
+)
+
+as
+if @state = 'create_procedure'
+begin
+insert into tbfunctionality(firstname,lastname,email,comment) values (@firstname, @lastname,
+@email, @comment)
+end
+
+SQL Stored Procedure
+SPROC Name : proc_function_update
+Query : 
+create procedure proc_function_update
+(
+@id int,
+@firstname varchar(100),
+@lastname varchar(100),
+@email varchar(100),
+@comment text,
+@state varchar(50) = ''
+)
+
+as
+
+if @state = 'update'
+begin
+update tbfunctionality set firstname=@firstname, lastname=@lastname, email=@email, comment=@comment
+where id=@id
+end
